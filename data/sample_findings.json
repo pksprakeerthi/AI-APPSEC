@@ -1,0 +1,79 @@
+{
+  "dataset_label": "Illustrative fictional data. Vulnerability IDs (DEMO-VULN-xxx) and packages are invented and do not describe real CVEs or real software.",
+  "applications": [
+    {"id": "app-portal", "name": "Customer Portal", "exposure": "internet-facing", "criticality": "critical", "owner": "Web Team", "description": "Public customer self-service website."},
+    {"id": "app-payments", "name": "Payments API", "exposure": "internet-facing", "criticality": "critical", "owner": "Payments Team", "description": "Processes customer payment requests."},
+    {"id": "app-admin", "name": "Internal Admin Console", "exposure": "internal", "criticality": "high", "owner": "IT Operations", "description": "Staff tool for account management."},
+    {"id": "app-reports", "name": "Reporting Service", "exposure": "internal", "criticality": "medium", "owner": "Data Team", "description": "Generates monthly business reports."},
+    {"id": "app-partner", "name": "Partner Integration Gateway", "exposure": "partner-facing", "criticality": "high", "owner": "Integrations Team", "description": "API gateway used by partner companies."},
+    {"id": "app-legacy", "name": "Legacy Inventory Tool", "exposure": null, "criticality": "low", "owner": "Unassigned", "description": "Old tool whose network exposure was never documented."}
+  ],
+  "components": [
+    {"id": "comp-portal-web", "name": "Portal Web Frontend", "kind": "web-frontend", "application_id": "app-portal"},
+    {"id": "comp-portal-api", "name": "Portal API", "kind": "api-service", "application_id": "app-portal"},
+    {"id": "comp-payments-api", "name": "Payments API Service", "kind": "api-service", "application_id": "app-payments"},
+    {"id": "comp-payments-worker", "name": "Payments Worker", "kind": "background-worker", "application_id": "app-payments"},
+    {"id": "comp-admin-ui", "name": "Admin UI", "kind": "web-frontend", "application_id": "app-admin"},
+    {"id": "comp-reports-svc", "name": "Report Generator", "kind": "batch-service", "application_id": "app-reports"},
+    {"id": "comp-partner-gateway", "name": "Gateway Service", "kind": "api-service", "application_id": "app-partner"},
+    {"id": "comp-legacy-app", "name": "Inventory Desktop Server", "kind": "monolith", "application_id": "app-legacy"}
+  ],
+  "packages": [
+    {"id": "pkg-acme-http-client-1.2.0", "name": "acme-http-client", "version": "1.2.0", "ecosystem": "pypi (fictional)"},
+    {"id": "pkg-acme-yaml-parser-2.1.0", "name": "acme-yaml-parser", "version": "2.1.0", "ecosystem": "pypi (fictional)"},
+    {"id": "pkg-demo-auth-lib-1.3.0", "name": "demo-auth-lib", "version": "1.3.0", "ecosystem": "npm (fictional)"},
+    {"id": "pkg-demo-logging-core-0.9.1", "name": "demo-logging-core", "version": "0.9.1", "ecosystem": "pypi (fictional)"},
+    {"id": "pkg-demo-crypto-utils-0.5.2", "name": "demo-crypto-utils", "version": "0.5.2", "ecosystem": "pypi (fictional)"},
+    {"id": "pkg-acme-orm-lite-4.0.0", "name": "acme-orm-lite", "version": "4.0.0", "ecosystem": "pypi (fictional)"},
+    {"id": "pkg-demo-pdf-renderer-2.0.0", "name": "demo-pdf-renderer", "version": "2.0.0", "ecosystem": "pypi (fictional)"},
+    {"id": "pkg-sample-image-resizer-0.7.0", "name": "sample-image-resizer", "version": "0.7.0", "ecosystem": "pypi (fictional)"},
+    {"id": "pkg-sample-template-engine-3.1.0", "name": "sample-template-engine", "version": "3.1.0", "ecosystem": "npm (fictional)"},
+    {"id": "pkg-demo-session-store-1.0.4", "name": "demo-session-store", "version": "1.0.4", "ecosystem": "npm (fictional)"},
+    {"id": "pkg-acme-xml-toolkit-5.2.0", "name": "acme-xml-toolkit", "version": "5.2.0", "ecosystem": "pypi (fictional)"}
+  ],
+  "vulnerabilities": [
+    {"id": "DEMO-VULN-001", "title": "Illustrative unsafe deserialization in acme-yaml-parser", "severity": "critical", "exploit_evidence": "public-poc", "fixed_version": "2.4.0", "description": "Fictional record for demonstration. Not a real CVE."},
+    {"id": "DEMO-VULN-002", "title": "Illustrative request smuggling flaw in acme-http-client", "severity": "high", "exploit_evidence": "none-known", "fixed_version": "1.2.5", "description": "Fictional record for demonstration. Not a real CVE."},
+    {"id": "DEMO-VULN-003", "title": "Illustrative template injection in sample-template-engine", "severity": "medium", "exploit_evidence": null, "fixed_version": "3.2.0", "description": "Fictional record for demonstration. Exploit evidence deliberately left unrecorded."},
+    {"id": "DEMO-VULN-004", "title": "Illustrative weak key derivation in demo-crypto-utils", "severity": "critical", "exploit_evidence": "actively-exploited", "fixed_version": "0.5.4", "description": "Fictional record for demonstration. Not a real CVE."},
+    {"id": "DEMO-VULN-005", "title": "Illustrative log injection in demo-logging-core", "severity": "low", "exploit_evidence": "none-known", "fixed_version": "0.9.3", "description": "Fictional record for demonstration. Not a real CVE."},
+    {"id": "DEMO-VULN-006", "title": "Illustrative decompression bomb in sample-image-resizer", "severity": "high", "exploit_evidence": "public-poc", "fixed_version": "0.7.2", "description": "Fictional record for demonstration. Not a real CVE."},
+    {"id": "DEMO-VULN-007", "title": "Illustrative XML entity expansion in acme-xml-toolkit", "severity": "medium", "exploit_evidence": null, "fixed_version": "5.3.0", "description": "Fictional record for demonstration. Exploit evidence deliberately left unrecorded."},
+    {"id": "DEMO-VULN-008", "title": "Illustrative token validation bypass in demo-auth-lib", "severity": "high", "exploit_evidence": "none-known", "fixed_version": "1.4.0", "description": "Fictional record for demonstration. Not a real CVE."}
+  ],
+  "dependencies": [
+    {"component_id": "comp-portal-web", "package_id": "pkg-demo-auth-lib-1.3.0"},
+    {"component_id": "comp-portal-web", "package_id": "pkg-sample-template-engine-3.1.0"},
+    {"component_id": "comp-portal-api", "package_id": "pkg-acme-http-client-1.2.0"},
+    {"component_id": "comp-portal-api", "package_id": "pkg-acme-yaml-parser-2.1.0"},
+    {"component_id": "comp-portal-api", "package_id": "pkg-demo-logging-core-0.9.1"},
+    {"component_id": "comp-payments-api", "package_id": "pkg-demo-crypto-utils-0.5.2"},
+    {"component_id": "comp-payments-api", "package_id": "pkg-acme-http-client-1.2.0"},
+    {"component_id": "comp-payments-api", "package_id": "pkg-acme-orm-lite-4.0.0"},
+    {"component_id": "comp-payments-worker", "package_id": "pkg-demo-pdf-renderer-2.0.0"},
+    {"component_id": "comp-payments-worker", "package_id": "pkg-demo-logging-core-0.9.1"},
+    {"component_id": "comp-admin-ui", "package_id": "pkg-sample-template-engine-3.1.0"},
+    {"component_id": "comp-admin-ui", "package_id": "pkg-demo-session-store-1.0.4"},
+    {"component_id": "comp-reports-svc", "package_id": "pkg-acme-xml-toolkit-5.2.0"},
+    {"component_id": "comp-reports-svc", "package_id": "pkg-demo-pdf-renderer-2.0.0"},
+    {"component_id": "comp-partner-gateway", "package_id": "pkg-acme-http-client-1.2.0"},
+    {"component_id": "comp-partner-gateway", "package_id": "pkg-demo-auth-lib-1.3.0"},
+    {"component_id": "comp-legacy-app", "package_id": "pkg-acme-xml-toolkit-5.2.0"},
+    {"component_id": "comp-legacy-app", "package_id": "pkg-sample-image-resizer-0.7.0"}
+  ],
+  "package_dependencies": [
+    {"from_package_id": "pkg-demo-pdf-renderer-2.0.0", "to_package_id": "pkg-sample-image-resizer-0.7.0"},
+    {"from_package_id": "pkg-acme-orm-lite-4.0.0", "to_package_id": "pkg-acme-yaml-parser-2.1.0"},
+    {"from_package_id": "pkg-demo-session-store-1.0.4", "to_package_id": "pkg-demo-crypto-utils-0.5.2"}
+  ],
+  "package_vulnerabilities": [
+    {"package_id": "pkg-acme-yaml-parser-2.1.0", "vulnerability_id": "DEMO-VULN-001"},
+    {"package_id": "pkg-acme-http-client-1.2.0", "vulnerability_id": "DEMO-VULN-002"},
+    {"package_id": "pkg-sample-template-engine-3.1.0", "vulnerability_id": "DEMO-VULN-003"},
+    {"package_id": "pkg-demo-crypto-utils-0.5.2", "vulnerability_id": "DEMO-VULN-004"},
+    {"package_id": "pkg-demo-logging-core-0.9.1", "vulnerability_id": "DEMO-VULN-005"},
+    {"package_id": "pkg-sample-image-resizer-0.7.0", "vulnerability_id": "DEMO-VULN-006"},
+    {"package_id": "pkg-acme-xml-toolkit-5.2.0", "vulnerability_id": "DEMO-VULN-007"},
+    {"package_id": "pkg-demo-auth-lib-1.3.0", "vulnerability_id": "DEMO-VULN-008"}
+  ]
+}
